@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block css_file %}
+<link rel="stylesheet" href="{% static 'blog/post.css' %}">
+<link rel="stylesheet" href="{% static 'blog/home.css' %}">
+{% endblock css_file %}
+
+
+{% block content %}
+
+
+
+<section id='welcome'>
+    <header>
+   <div id="my-photo"> 
+    <img src="{% static "blog/images/1.JPG"%}" alt="this is victor the creator of the blog">
+    <h2>Victor's blog</h2>
+    </div>
+    <p>Hello, My name is Victor, I am from Brazil and I want to share with you a little bit of my life</p>
+    </header>        
+</section>
+
+<section id='latest-posts'>
+<h2>My latest thoughts</h2>
+<ul>
+    {% for post in posts %}
+        {% include 'blog/includes/post.html' %}
+    {% endfor %}
+</ul>
+<a id="all-posts" href="{% url "blog-all-posts" %}"> All posts </a>
+
+</section>
+
+
+<section id='about'>
+    <h2>What I do</h2>
+    <p>I am a Software Engineering Student at Conestoga College</p>
+    <p>Im Seeking Coop position for the Spring of 2024 (Availability 4, 8, 12 or 16 months)</p>
+</section>
+
+{% endblock content %}

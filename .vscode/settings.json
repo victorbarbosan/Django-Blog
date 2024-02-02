@@ -1,0 +1,12 @@
+{
+    "window.autoDetectColorScheme": true,
+    "window.menuBarVisibility": "compact",
+    "editor.wordWrap": "on",
+    "window.zoomLevel": 2,
+    "editor.minimap.enabled": false,
+    "python.languageServer": "Pylance",
+    "emmet.includeLanguages": {
+        "django-html": "html"
+    },
+    
+}
