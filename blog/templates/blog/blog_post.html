@@ -42,7 +42,7 @@
     <article>        
         <img src="{{post.image.url}}" alt="{{post.title}}">
         <address>By <a href="mailto:{{post.author.email}}">{{post.author|title}}</a></address>
-        <div>
+        <div id="last-updated">
             Last updated on <time> {{post.date|date:"d M Y"}}</time>
         </div>
     </article>
@@ -52,7 +52,7 @@
     {{post.content|linebreaks}}
 </main>
 
-<h1 style="text-align:center;margin-top:12rem;">Comments:</h1>
+<h1 id="comments-header">Comments:</h1>
 <section id = "comments">
     <ul>
         {%for comment in all_comments%}        

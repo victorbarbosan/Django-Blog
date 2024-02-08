@@ -42,3 +42,16 @@
     color: white;
   } 
 
+  @media (max-width: 768px) {
+
+
+    /* remove padding on post__content paragraph */
+    .post p {
+      padding: 0;
+      margin: 0;
+    }
+
+    .post a {
+      padding: 1rem;
+    }
+  }

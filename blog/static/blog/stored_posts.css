@@ -1,5 +1,5 @@
 #stored_posts{
-    margin:8rem auto 3rem auto;
+    margin:3rem auto 3rem auto;
     padding:2rem;
     border-radius:12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -7,6 +7,14 @@
     width: 85%;
     max-width: 30rem;
 }
+
+#stored_posts_h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #2e2e2e;
+    margin-top: 6rem;
+    
+  }
 
 #stored_posts ul{
     list-style:none;
@@ -28,7 +36,7 @@
     text-align: center;
     font-weight: bold;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -50,4 +58,27 @@
     justify-content: center;
     align-items: center;
     margin-right: 1rem;
+}
+
+@media (max-width: 768px) {
+  #stored_posts {
+    width: 90%;
+    max-width: none;
+  }
+
+  #stored_posts_h2 {
+    margin-top: 3rem;
+  }
+
+  #stored_posts li {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #stored_posts a {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+
+  
 }

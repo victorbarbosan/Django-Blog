@@ -19,6 +19,11 @@ body {
   height: 22rem;
 }
 
+#comments-header {
+  text-align:center;
+  margin-top:10rem
+}
+
 #summary h2 {
   color: white;
   font-size: 4.5rem;
@@ -204,4 +209,46 @@ main {
 
 #comments h2 {
   color: #464646;
+}
+
+/* adapt mobile to reduce summary scale */
+@media (max-width: 768px) {
+  #summary {
+    height: 15rem;
+    margin: 2rem auto;
+    padding: 1rem;
+  }
+
+  #comments-header {
+    margin-top: 0.5rem;
+  }
+
+  #summary h2 {
+    font-size: 1.5rem;
+  }
+
+  #summary form {
+    margin-top: 6rem;
+    font-size: 0.8rem;
+  }
+
+  #summary article {
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem;
+  }
+
+  #summary address {
+    font-size: 0.8rem;
+  }
+
+  #last-updated {
+    font-size: 0.8rem;
+  }
+
+  #summary article img {
+    width: 6rem;
+    height: 6rem;
+    margin-bottom: 0;
+  }
 }
