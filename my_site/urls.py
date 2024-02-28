@@ -1,3 +1,13 @@
+# 
+#  FILE		      : urls.py
+#  PROJECT		  : Django-blog
+#  PROGRAMMER	  : Victor Barbosa
+#  FIRST VERSION  : 2022-07-01
+#  DESCRIPTION	  : This file contains the URL patterns for the blog app.
+# 
+
+
+
 """my_site URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -19,6 +29,9 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
+
+
+# Include the blog app urls and the admin page url and the static and media urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),

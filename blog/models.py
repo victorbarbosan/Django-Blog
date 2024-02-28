@@ -1,9 +1,20 @@
+# 
+#  FILE		      : models.py
+#  PROJECT		  : Django-blog
+#  PROGRAMMER	  : Victor Barbosa
+#  FIRST VERSION  : 2022-07-01
+#  DESCRIPTION	  : This file contains the models for the blog app.
+# 
+
+
+
 import email
 from tkinter import CASCADE
 from django.db import models
 
-# Create your models here.
 
+
+# Author model
 class Author(models.Model):
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
@@ -17,13 +28,18 @@ class Author(models.Model):
         return self.full_name()
 
 
+
+# Tag model
 class Tag(models.Model):
     name = models.SlugField(max_length=50)
 
+    # object name (used in the admin panel)
     def __str__(self):
         return self.name
 
 
+
+# Post model
 class Post(models.Model):
     author = models.ForeignKey(Author,on_delete=models.SET_NULL, null=True, related_name="posts")
     title = models.CharField(max_length=50)
@@ -34,16 +50,20 @@ class Post(models.Model):
     content = models.TextField()
     slug = models.SlugField(unique=True, db_index=True)
 
+    # object name (used in the admin panel)
     def __str__(self):
         return f"{self.title} -- {self.date}"
 
 
+
+# Commentary model
 class Commentary(models.Model):
     author = models.CharField(max_length=20)
     date = models.DateField(auto_now_add=True)
     content = models.TextField(max_length=150)
     post = models.ForeignKey(Post, on_delete=models.SET_NULL, null=True, related_name= "comments" )
 
+    # object name (used in the admin panel)
     def __str__(self):
         return f"{self.author}: {self.content} ({self.date})"
 
