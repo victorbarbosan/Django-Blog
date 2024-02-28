@@ -30,10 +30,11 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 
-
-# Include the blog app urls and the admin page url and the static and media urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
-] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) \
-+ static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
+    + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# create 404 
+handler404 = 'blog.views.handler404'

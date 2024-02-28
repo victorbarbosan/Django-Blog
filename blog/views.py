@@ -130,3 +130,6 @@ class ReadLaterView(View):
     
     
     
+# define 404 error
+def handler404(request, exception):
+    return render(request, '404.html', {})
