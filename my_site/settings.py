@@ -76,6 +76,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'my_site.wsgi.application'
 
+CSRF_TRUSTED_ORIGINS = ['https://django-app.blackfield-2f304106.canadaeast.azurecontainerapps.io']
+
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases

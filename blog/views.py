@@ -128,3 +128,5 @@ class ReadLaterView(View):
 
         return redirect(request.META['HTTP_REFERER'])
     
+    
+    
