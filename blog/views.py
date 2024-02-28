@@ -1,3 +1,12 @@
+# 
+#  FILE		      : views.py
+#  PROJECT		  : Django-blog
+#  PROGRAMMER	  : Victor Barbosa
+#  FIRST VERSION  : 2022-07-01
+#  DESCRIPTION	  : This file contains the views for the blog app.
+# 
+
+
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
@@ -7,20 +16,24 @@ from django.views import View
 from django.views.generic import ListView
 from .models import Commentary, Post
 from .forms import CommentForm
-# Create your views here.
 
 
-
+ 
+# Home page view. It will show the last 3 posts.
 class StartPageView(ListView):
     model = Post
     template_name = "blog/home.html"
     ordering = ["-date"]
 
+    # return only the last 3 posts
     def get_queryset(self):
         queryset = super().get_queryset()
         data = queryset[:3]
         return data
 
+
+
+# Renders the home page with the last 3 posts.
 class BlogIndexView(View):
     def blog_index(request):
         latest_posts = Post.objects.all().order_by("-date")[:3] # The minus signal makes it descending order. It wouldn't be possible to use minus on the [:3] 
@@ -28,6 +41,9 @@ class BlogIndexView(View):
             'posts': latest_posts,
         })
 
+
+
+# Show all the posts.
 class BlogAllPosts(View):
     def blog_all_posts(request):
         all_posts = Post.objects.all().order_by("-date")
@@ -35,6 +51,9 @@ class BlogAllPosts(View):
             'all_posts': all_posts,
         })
 
+
+
+# Show a single post.
 class BlogPostView(View):
     def is_stored_post(self, request, post_id):
         stored_posts = request.session.get("stored_posts")
@@ -77,6 +96,8 @@ class BlogPostView(View):
         return render(request, "blog/blog_post.html", context)
         
 
+
+# Read later.
 class ReadLaterView(View):
     def get(self, request):
         stored_posts = request.session.get("stored_posts")
@@ -106,3 +127,4 @@ class ReadLaterView(View):
         request.session["stored_posts"] = stored_posts
 
         return redirect(request.META['HTTP_REFERER'])
+    
