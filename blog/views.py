@@ -135,13 +135,15 @@ class ReadLaterView(View):
     
     
     
-# define 404 error
+# Define 404 error
 def handler404(request, exception):
     return render(request, '404.html', {})
 
 
 
-#API
+# -- API VIEWS --
+
+# All posts
 class PostListAPIView(APIView):
     def get(self, request):
         posts = Post.objects.all()
@@ -150,16 +152,49 @@ class PostListAPIView(APIView):
             
 
 
-
+# Single post
 class PostDetailAPIView(APIView):
-    def get(self,request, pk):
+    def get(self, request, pk):
+        """
+        Retrieve a specific post by its primary key (pk).
+
+        Args:
+            request: The HTTP request object.
+            pk: The primary key of the post to retrieve.
+
+        Returns:
+            If the post exists, returns serialized data with a 200 OK response.
+            If the post does not exist, returns a 404 Not Found response.
+        """
         try:
             post = Post.objects.get(pk=pk)
             serializer = PostSerializer(post)
             return Response(serializer.data, status=status.HTTP_200_OK)
-        except:
+        except Post.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
-            
-              
+
+    def put(self, request, pk):
+        """
+        Update an existing post by its primary key (pk).
+
+        Args:
+            request: The HTTP request object containing updated data.
+            pk: The primary key of the post to update.
+
+        Returns:
+            If the post exists and the serializer is valid, returns serialized data with a 200 OK response.
+            If the serializer is invalid, returns a 400 Bad Request response with validation errors.
+            If the post does not exist, returns a 404 Not Found response.
+        """
+        try:
+            post = Post.objects.get(pk=pk)
+            serializer = PostSerializer(post, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Post.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)    
 
         

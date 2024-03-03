@@ -23,6 +23,6 @@ urlpatterns = [
     
     # API views
     path('api/posts', views.PostListAPIView.as_view(), name='post-list-api'),
-    path('api/posts/<int:pk>', views.PostDetailAPIView.as_view(), name='api-posts-<int:pk>')
+    path('api/posts/<int:pk>', views.PostDetailAPIView.as_view(), name='api-posts-detail')
     
 ]

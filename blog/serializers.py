@@ -15,6 +15,8 @@ from blog.models import Post
 
 # Post serializer
 class PostSerializer(serializers.ModelSerializer):
+    image = serializers.CharField(required=False)
+    
     class Meta:
         model = Post
         fields = ['id', 'author', 'title', 'date', 'image', 'excerpt', 'tag', 'content', 'slug']
