@@ -16,8 +16,13 @@ from django.views import View
 from django.views.generic import ListView
 from .models import Commentary, Post
 from .forms import CommentForm
+from .serializers import PostSerializer
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.views import APIView
 
-
+ 
  
 # Home page view. It will show the last 3 posts.
 class StartPageView(ListView):
@@ -133,3 +138,28 @@ class ReadLaterView(View):
 # define 404 error
 def handler404(request, exception):
     return render(request, '404.html', {})
+
+
+
+#API
+class PostListAPIView(APIView):
+    def get(self, request):
+        posts = Post.objects.all()
+        serializer = PostSerializer(posts, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+            
+
+
+
+class PostDetailAPIView(APIView):
+    def get(self,request, pk):
+        try:
+            post = Post.objects.get(pk=pk)
+            serializer = PostSerializer(post)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+            
+              
+
+        

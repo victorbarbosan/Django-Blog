@@ -3,7 +3,7 @@
     "window.menuBarVisibility": "compact",
     "editor.wordWrap": "on",
     "window.zoomLevel": 2,
-    "editor.minimap.enabled": false,
+    "editor.minimap.enabled": true,
     "python.languageServer": "Pylance",
     "emmet.includeLanguages": {
         "django-html": "html"
