@@ -145,6 +145,17 @@ def handler404(request, exception):
 
 # All posts
 class PostListAPIView(APIView):
+    """
+    List all posts
+    
+    Args:
+        request: The HTTP request object.
+        pk: The primary key of the post to retrieve.
+    
+    Returns:
+        If the post exists, returns serialized data with a 200 OK response.
+        If the post does not exist, returns a 404 Not Found response.
+    """
     def get(self, request):
         posts = Post.objects.all()
         serializer = PostSerializer(posts, many=True)
@@ -173,6 +184,7 @@ class PostDetailAPIView(APIView):
         except Post.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
+
     def put(self, request, pk):
         """
         Update an existing post by its primary key (pk).
@@ -198,3 +210,21 @@ class PostDetailAPIView(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)    
 
         
+    def delete(self, request, pk):
+        """
+        Delete a specific post by its primary key (pk).
+
+        Args:
+            request: The HTTP request object.
+            pk: The primary key of the post to delete.
+
+        Returns:
+            If the post exists, returns a 204 No Content response.
+            If the post does not exist, returns a 404 Not Found response.
+        """
+        try:
+            post = Post.objects.get(pk=pk)
+            post.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)
