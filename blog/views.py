@@ -160,7 +160,26 @@ class PostListAPIView(APIView):
         posts = Post.objects.all()
         serializer = PostSerializer(posts, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-            
+    
+    
+    """
+    Create a new post
+    
+    Args:
+        request: The HTTP request object.
+        pk: The primary key of the post to retrieve.
+        
+    Returns:
+        If the serializer is valid, returns serialized data with a 201 Created response.
+        If the serializer is invalid, returns a 400 Bad Request response with validation errors. 
+    """ 
+    def post(self, request):
+        serializer = PostSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 # Single post
