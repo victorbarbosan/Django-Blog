@@ -24,4 +24,4 @@ jobs:
           context: . # Ensure the builder knows where the Dockerfile is
           platforms: linux/amd64,linux/arm64 # Build for both PC and Raspberry Pi
           push: true
-          tags: your-dockerhub-username/your-django-app:latest
+          tags: victorbarbosa9/my_site-app:latest
