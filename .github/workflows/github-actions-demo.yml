@@ -1,0 +1,27 @@
+name: Build & Push
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - uses: docker/build-push-action@v5
+        with:
+          context: . # Ensure the builder knows where the Dockerfile is
+          platforms: linux/amd64,linux/arm64 # Build for both PC and Raspberry Pi
+          push: true
+          tags: your-dockerhub-username/your-django-app:latest
