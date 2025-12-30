@@ -15,7 +15,6 @@ from pathlib import Path
 from os import getenv
 
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -47,6 +46,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -77,7 +77,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'my_site.wsgi.application'
 
-CSRF_TRUSTED_ORIGINS = ['https://django-app.blackfield-2f304106.canadaeast.azurecontainerapps.io']
+CSRF_TRUSTED_ORIGINS = [
+    'https://django-app.blackfield-2f304106.canadaeast.azurecontainerapps.io']
 
 
 # Database
@@ -86,7 +87,8 @@ CSRF_TRUSTED_ORIGINS = ['https://django-app.blackfield-2f304106.canadaeast.azure
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(os.path.join(BASE_DIR, "db.sqlite3"))#BASE_DIR / 'db.sqlite3',
+        # BASE_DIR / 'db.sqlite3',
+        'NAME': str(os.path.join(BASE_DIR, "db.sqlite3"))
     }
 }
 
