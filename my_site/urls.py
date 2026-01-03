@@ -1,11 +1,10 @@
-# 
+#
 #  FILE		      : urls.py
 #  PROJECT		  : Django-blog
 #  PROGRAMMER	  : Victor Barbosa
 #  FIRST VERSION  : 2022-07-01
 #  DESCRIPTION	  : This file contains the URL patterns for the blog app.
-# 
-
+#
 
 
 """my_site URL Configuration
@@ -35,6 +34,3 @@ urlpatterns = [
     path('', include('blog.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
-# create 404 
-handler404 = 'blog.views.handler404'
