@@ -23,13 +23,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-2f2i_oil1ip3j$#=1@i!o^!h1x@m&84sf6#wtjku93$scwh$+w'
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY', 'django-insecure-2f2i_oil1ip3j$#=1@i!o^!h5x@m&84sf6#wtjku93$scwh$+w')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['victor-barbosa.com',
+                 'www.victor-barbosa.com', 'localhost', '127.0.0.1']
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Application definition
 
@@ -78,7 +81,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'my_site.wsgi.application'
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://django-app.blackfield-2f304106.canadaeast.azurecontainerapps.io']
+    'https://victor-barbosa.com']
 
 
 # Database
