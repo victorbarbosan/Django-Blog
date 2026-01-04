@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['victor-barbosa.com',
+ALLOWED_HOSTS = ['blog.victor-barbosa.com', 'victor-barbosa.com',
                  'www.victor-barbosa.com', 'localhost', '127.0.0.1']
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
