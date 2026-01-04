@@ -42,7 +42,7 @@
   padding: 2rem;
   border-radius: 12px;
   width: 60rem;
-  margin: -6rem auto 2rem auto;
+  margin: -6rem auto 4rem auto;
   box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.4);
 }
 
@@ -65,17 +65,18 @@
 
 #about {
   text-align: center;
-  padding: 3rem;
+  padding: 1rem;
   background-color: #e48900;
   margin-top: 5rem;
 }
 
 #about h2 {
-  font-size: 3rem;
+  font-size: 2rem;
+  margin:1rem;
 }
 
 #about p {
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: #353535;
 }
 
